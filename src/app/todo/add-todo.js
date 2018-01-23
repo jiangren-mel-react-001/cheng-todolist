@@ -1,7 +1,10 @@
 import React from 'react';
 
 export function AddTodo(props) {
+    const handleClick = () => {
+        props.onAddTodo('aasdf');
+    };
     return (
-        <button onClick={() => props.onAddTodo('abc')}>Add</button>
+        <button onClick={handleClick}>Add</button>
     )
 };
