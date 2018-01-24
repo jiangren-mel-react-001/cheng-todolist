@@ -1,4 +1,5 @@
 import React from 'react';
+import PropType from 'prop-types';
 
 export function TodoList(props) {
     const itemList = props.items.map((aItem, index) => (
@@ -23,3 +24,9 @@ export function TodoList(props) {
         </ul>
     );
 };
+
+TodoList.propTypes = {
+    items: PropType.array.isRequired,
+    onRemoveTodo: PropType.func.isRequired,
+    onDoneTodo: PropType.func.isRequired
+}
