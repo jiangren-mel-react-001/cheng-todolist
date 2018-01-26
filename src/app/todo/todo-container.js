@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import { TodoList } from './todo-list';
 import { AddTodo } from './add-todo';
 import { TodoModel } from './model';
@@ -7,11 +8,16 @@ export class TodoContainer extends React.Component {
     constructor() {
         super();
         this.state = {
-            todoItems: [new TodoModel('todo1')]
+            todoItems: []
         }
         this.onAddTodo = this.onAddTodo.bind(this);
         this.onRemoveTodo = this.onRemoveTodo.bind(this);
         this.onDoneTodo = this.onDoneTodo.bind(this);
+    }
+    componentDidMount() {
+        axios.get('https://jr-001-pawpatrol-course-api.herokuapp.com/api/Todos').then(({data}) => {
+            this.setState({todoItems: data});
+        })
     }
     onAddTodo(aItem) {
         this.setState({
