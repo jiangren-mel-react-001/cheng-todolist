@@ -1,12 +1,24 @@
 import React, { Component } from 'react';
-import logo from '../assets/logo.svg';
 import './App.css';
-import { TodoContainer } from './todo/todo-container';
+import TodoContainer from './todo/todo-container';
+
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import { combineReducers } from 'redux'
+
+import { todos } from './todo/reducers';
+
+const todoApp = combineReducers({
+  todos
+})
+const store = createStore(todoApp)
 
 class App extends Component {
   render() {
     return (
-      <TodoContainer />
+      <Provider store={store}>
+        <TodoContainer />
+      </Provider>
     );
   }
 }
